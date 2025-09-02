@@ -56,7 +56,6 @@ jobs:
     outputs:
       image-digest: ${{ steps.build.outputs.digest }}
       image-tag: ${{ steps.meta.outputs.tags }}
-    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -75,8 +74,9 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}:latest
           tags: |
+            ghcr.io/ibrahimbio/SkillSchuleDevOps2:latest
             type=ref,event=branch
             type=sha,prefix={{branch}}-
             type=raw,value=latest,enable={{is_default_branch}}
@@ -88,8 +88,8 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta.outputs.tags}}
+          labels: ${{ steps.meta.outputs.labels}}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -141,6 +141,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          # image-ref: ghcr.io/ibrahimbio/SkillSchuleDevOps2:latest
           format: 'sarif'
           output: 'trivy-results.sarif'
           
