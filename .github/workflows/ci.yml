@@ -74,9 +74,8 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}:latest
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
           tags: |
-            ghcr.io/ibrahimbio/SkillSchuleDevOps2:main
             type=ref,event=branch
             type=sha,prefix={{branch}}-
             type=raw,value=latest,enable={{is_default_branch}}
@@ -140,8 +139,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-          # image-ref: ghcr.io/ibrahimbio/SkillSchuleDevOps2:latest
+          image-ref: 'ghcr.io/ibrahimbio/SkillSchuleDevOps2:latest'
           format: 'sarif'
           output: 'trivy-results.sarif'
           
