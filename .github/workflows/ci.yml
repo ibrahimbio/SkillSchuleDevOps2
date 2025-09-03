@@ -143,6 +143,6 @@ jobs:
           image-ref: 'ghcr.io/ibrahimbio/skillschuledevops2:latest'  
           format: 'sarif'
           output: 'trivy-results.sarif'
-    env:
-      TRIVY_USERNAME: ${{ github.actor }}
-      TRIVY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+    # env:
+    #   TRIVY_USERNAME: ${{ github.actor }}
+    #   TRIVY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
