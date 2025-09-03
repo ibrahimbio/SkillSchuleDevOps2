@@ -33,7 +33,7 @@ const server = http.createServer((req, res) => {
         <!DOCTYPE html>
         <html>
         <head>
-          <title>Whats happening Homie, its good day for DevOps Lab 2025</title>
+          <title>Welcome to DevOps Lab 2025</title>
           <style>
             body { font-family: Arial, sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; }
             .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; }
@@ -44,7 +44,9 @@ const server = http.createServer((req, res) => {
           <div class="header">
             <h1>I'm Getting Better at DevOps, Yay!</h1>
             <p>Modern Node.js application with CI/CD pipeline</p>
+            <p>Shout out to Couch Ralph for this amazing journey! Built with by Ibrahim :) </p>
           </div>
+          <p></p>
           <h2>Available Endpoints:</h2>
           <div class="endpoint">
             <strong>GET /</strong> - This welcome page
