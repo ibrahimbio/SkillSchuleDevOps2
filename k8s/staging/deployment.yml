@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: ghcr.io/ibrahimbio/my-devops-project:develop-latest
+        image: ghcr.io/ibrahimbio/skillschuledevops2:develop-latest
         ports:
         - containerPort: 3000
         env:
