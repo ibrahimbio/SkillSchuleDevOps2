@@ -61,13 +61,13 @@ node --version    # v18.x+ or v20.x+
 npm --version     # 9.x+ or 10.x+
 git --version     # 2.34+
 docker --version  # 24.x+
-
+```
 
 Step 1: Set Up Git for Version Control
 ⏱️ Time Required: 5 minutes
 Configure Git (one-time setup):
 
-
+```bash
 git config --global user.name "Your Name"
 git config --global user.email "you@example.com"
 git config --global init.defaultBranch main
