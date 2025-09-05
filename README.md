@@ -236,8 +236,10 @@ CMD ["npm", "start"]
 ## Step 6: Essential Config Files
 
 
-- .dockerignore (use ``` touch .dockerignore ``` to create file)
-copy and paste content below in created file
+- .dockerignore (use ``` touch .dockerignore ``` to create file).
+Copy and paste content below in created file
+
+.dockerignore
 
 ```
 node_modules 
@@ -262,9 +264,80 @@ tests/
 jest.config.js 
 .eslintrc*
 ```
-- .gitignore
-- .env.example
-- .eslintrc.js
+- .gitignore (use ``` touch .gitignore ``` to create file).
+Copy and paste content below in created file:
+
+.gitignore
+
+```
+# Dependencies
+node_modules/
+npm-debug.log*
+
+# Runtime data pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage
+coverage/
+.nyc_output
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+```
+- .env.example (use ``` touch env.example ``` to create file).
+Copy and paste content below in created file:
+
+```
+# Server Configuration
+PORT=3000
+NODE_ENV=production
+
+# Logging
+LOG_LEVEL=info
+
+```
+- .eslintrc.js  (use ``` touch .eslintrc.js ``` to create file).
+Copy and paste content below in created file:
+
+```
+module.exports = {
+  env: {
+    node: true,
+    es2021: true,
+    jest: true
+  },
+  extends: ['eslint:recommended'],
+  parserOptions: {
+    ecmaVersion: 12,
+    sourceType: 'module'
+  },
+  rules: {
+    'no-console': 'off',
+    'no-unused-vars': ['error', { 'argsIgnorePattern': '^_' }]
+  }
+};
+
+```
+
 (Use the configs provided in your content.)
 
 
