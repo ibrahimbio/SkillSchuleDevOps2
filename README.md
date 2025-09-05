@@ -63,15 +63,17 @@ git --version     # 2.34+
 docker --version  # 24.x+
 ```
 
-Step 1: Set Up Git for Version Control
-⏱️ Time Required: 5 minutes
-Configure Git (one-time setup):
+### Step 1: Set Up Git for Version Control
+- ⏱️ Time Required: 5 minutes
+- Configure Git (one-time setup):
 
 ```bash
 git config --global user.name "Your Name"
 git config --global user.email "you@example.com"
 git config --global init.defaultBranch main
-Create and initialize project:
+```
+- Create and initialize project:
+```bash
 mkdir my-devops-project
 cd my-devops-project
 git init
