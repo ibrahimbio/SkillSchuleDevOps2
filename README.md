@@ -269,7 +269,7 @@ services:
       start_period: 10s
 ```
 
-Step 8: Test Everything Locally
+### Step 8: Test Everything Locally
 
 bash
 
@@ -299,5 +299,51 @@ docker ps
 docker logs my-devops-container
 ```
 
+### Step 9: Deploy to GitHub
 
+bash
+
+```
+git add .
+git commit -m "Initial commit: Complete DevOps setup with working CI/CD"
+git branch -M main
+git remote add origin https://github.com/YOUR_GITHUB_USERNAME/my-devops-project.git
+git push -u origin main
+```
+
+### Step 10: Kubernetes Deployment
+
+Create directories:
+
+bash
+```
+mkdir -p k8s/staging k8s/production
+```
+
+Add staging and production deployments (deployment.yml in each).
+(Use the full YAML from your content.)
+
+### Step 11: Complete Deployment Workflow
+
+- develop → deploys to staging
+- main → deploys to production
+
+Deploy to staging:
+
+bash
+```
+git checkout -b develop
+git add .
+git commit -m "Add new feature"
+git push origin develo
+```
+Deploy to production:
+
+bash
+
+```
+git checkout main
+git merge develop
+git push origin main
+```
 
