@@ -138,7 +138,7 @@ Create Application file
 tocuh app.js
 
 ```
-Copy and past the content of [https://github.com/ibrahimbio/SkillSchuleDevOps2/blob/main/app.js](app.js)
+Copy and past the content of [app.js](https://github.com/ibrahimbio/SkillSchuleDevOps2/blob/main/app.js)
 ```
 // core modules
 const http = require("http");
