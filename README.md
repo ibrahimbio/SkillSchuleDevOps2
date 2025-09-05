@@ -1,4 +1,4 @@
-# 🚀 DevOps Lab 2025 – Complete Setup Guide
+# Hands-On DevOps 2025: Node.js App with GitHub Actions, Docker & Kubernetes
 
 ## 📑 Table of Contents
 - [📋 Prerequisites - Download These First!](#-prerequisites---download-these-first)
@@ -33,15 +33,19 @@ Before starting, install these tools on your machine:
 
 2. **Git - Latest stable version**  
    - [Download here](https://git-scm.com/downloads)  
-   - Verify:  
-     ```bash
+   - Verify:
+   
+   bash 
+     ```
      git --version
      ```
 
 3. **Docker Desktop - Latest version**  
    - [Download here](https://www.docker.com/products/docker-desktop/)  
-   - Verify:  
-     ```bash
+   - Verify:
+  
+     bash 
+     ```
      docker --version
      docker-compose --version
      ```
@@ -56,7 +60,9 @@ Before starting, install these tools on your machine:
 ---
 
 ### Verify Everything is Installed
-```bash
+
+bash
+```
 node --version    # v18.x+ or v20.x+
 npm --version     # 9.x+ or 10.x+
 git --version     # 2.34+
@@ -67,26 +73,34 @@ docker --version  # 24.x+
 
 Configure Git (one-time setup):
 
-```bash
+bash
+```
 git config --global user.name "Your Name"
 git config --global user.email "you@example.com"
 git config --global init.defaultBranch main
 ```
 Create and initialize project:
-```bash
+
+bash
+```
 mkdir my-devops-project
 cd my-devops-project
 git init
 ```
 
-Step 2: Build a Node.js Web App
+## Step 2: Build a Node.js Web App
 
-Initialize Node.js Project
-```bash
+Initialize Node.js Project:
+
+bash
+```
 npm init -y
 ```
+The above creates a Package.json file where all the depencies for the app resides.
 
 ## Update package.json
+
+Copy and paste the content below into the package.json file.
 
 json
 
@@ -116,8 +130,15 @@ json
 }
 ```
 
-Create app.js
+Create Application file 
 
+```
+# Create app.js file which will serve as the entry point of the app.
+
+tocuh app.js
+
+```
+Copy and past the content of [https://github.com/ibrahimbio/SkillSchuleDevOps2/blob/main/app.js](app.js)
 ```
 // core modules
 const http = require("http");
