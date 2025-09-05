@@ -18,7 +18,7 @@
 ---
 
 ## 📋 Prerequisites - Download These First!
-⏱️ **Time Required: 15-30 minutes** 
+
 
 Before starting, install these tools on your machine:
 
@@ -55,7 +55,7 @@ Before starting, install these tools on your machine:
 
 ---
 
-### ✅ Verify Everything is Installed
+### Verify Everything is Installed
 ```bash
 node --version    # v18.x+ or v20.x+
 npm --version     # 9.x+ or 10.x+
@@ -64,7 +64,7 @@ docker --version  # 24.x+
 ```
 
 ### Step 1: Set Up Git for Version Control
-⏱️ Time Required: 5 minutes
+
 Configure Git (one-time setup):
 
 ```bash
@@ -80,7 +80,7 @@ git init
 ```
 
 Step 2: Build a Node.js Web App
-⏱️ Time Required: 10-15 minutes
+
 Initialize Node.js Project
 ```bash
 npm init -y
@@ -139,7 +139,7 @@ npm install
 ```
 
 ## Step 3: Create Proper Tests
-⏱️ Time Required: 10 minutes
+
 
 Create tests
 
@@ -181,7 +181,7 @@ module.exports = {
 ```
 
 ## Step 4: GitHub Actions CI/CD Pipeline
-⏱️ Time Required: 15 minutes
+
 
 Create workflow:
 ```
@@ -205,7 +205,6 @@ on:
 ```
 
 ## Step 5: Dockerfile
-⏱️ Time Required: 5 minutes
 
 Create Dockerfile:
 
@@ -235,9 +234,34 @@ CMD ["npm", "start"]
 ```
 
 ## Step 6: Essential Config Files
-⏱️ Time Required: 5 minutes
 
-- .dockerignore
+
+- .dockerignore (use ``` touch .dockerignore ``` to create file)
+copy and paste content below in created file
+
+```
+node_modules 
+npm-debug.log* 
+.git 
+.github 
+.env 
+.env.local 
+.env.*.local 
+logs 
+*.log 
+coverage 
+.nyc_output 
+.vscode 
+.idea 
+*.swp 
+*.swo 
+.DS_Store 
+Thumbs.db 
+README.md 
+tests/ 
+jest.config.js 
+.eslintrc*
+```
 - .gitignore
 - .env.example
 - .eslintrc.js
