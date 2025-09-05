@@ -18,7 +18,7 @@
 ---
 
 ## 📋 Prerequisites - Download These First!
-⏱️ **Time Required: 15-30 minutes**
+⏱️ **Time Required: 15-30 minutes** 
 
 Before starting, install these tools on your machine:
 
