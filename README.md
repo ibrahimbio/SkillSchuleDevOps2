@@ -88,7 +88,8 @@ npm init -y
 
 ## Update package.json
 
-```json
+```
+json
 {
   "name": "my-devops-project",
   "version": "1.0.0",
