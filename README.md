@@ -148,9 +148,9 @@ mkdir tests
 touch tests/app.test.js
 ```
 Add tests/app.test.js:
-```
-js
 
+js
+```
 const request = require('supertest');
 const server = require('../app');
 
