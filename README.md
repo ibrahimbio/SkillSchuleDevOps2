@@ -1,7 +1,7 @@
 # Hands-On DevOps 2025: Node.js App with GitHub Actions, Docker & Kubernetes
 
-## 📑 Table of Contents
-- [📋 Prerequisites - Download These First!](#-prerequisites---download-these-first)
+##  Table of Contents
+- [Prerequisites - Download These First!](#-prerequisites---download-these-first)
 - [Step 1: Set Up Git for Version Control](#step-1-set-up-git-for-version-control)
 - [Step 2: Build a Node.js Web App](#step-2-build-a-nodejs-web-app)
 - [Step 3: Create Proper Tests](#step-3-create-proper-tests)
@@ -13,11 +13,11 @@
 - [Step 9: Deploy to GitHub](#step-9-deploy-to-github)
 - [Step 10: Kubernetes Deployment](#step-10-kubernetes-deployment)
 - [Step 11: Complete Deployment Workflow](#step-11-complete-deployment-workflow)
-- [🚨 Troubleshooting Guide](#-troubleshooting-guide)
+- [Troubleshooting Guide](#-troubleshooting-guide)
 
 ---
 
-## 📋 Prerequisites - Download These First!
+## Prerequisites - Download These First!
 
 
 Before starting, install these tools on your machine:
@@ -277,34 +277,41 @@ jest.config.js
 
 ```
 # Dependencies
+
 node_modules/
 npm-debug.log*
 
 # Runtime data pids
+
 *.pid
 *.seed
 *.pid.lock
 
 # Coverage
+
 coverage/
 .nyc_output
 
 # Environment variables
+
 .env
 .env.local
 .env.*.local
 
 # Logs
+
 logs
 *.log
 
 # IDE
+
 .vscode/
 .idea/
 *.swp
 *.swo
 
 # OS
+
 .DS_Store
 Thumbs.db
 
@@ -314,10 +321,12 @@ The file shows other developers what environment variables an application requir
 
 ```
 # Server Configuration
+
 PORT=3000
 NODE_ENV=production
 
 # Logging
+
 LOG_LEVEL=info
 
 ```
@@ -386,7 +395,8 @@ services:
 bash
 
 ```
-# Install all dependencies in the package.json file  
+# Install all dependencies in the package.json file
+
 npm install
 
 # Run test
@@ -394,6 +404,7 @@ npm install
 npm test
 
 # Start app
+
 npm start
 
 ```
@@ -404,6 +415,7 @@ bash
 
 ```
 #Copy and paste to a browser address bar of your choice
+
 curl http://localhost:3000/
 curl http://localhost:3000/health
 curl http://localhost:3000/info
@@ -414,15 +426,19 @@ Docker commands:
 bash
 ```
 #  Builder Docker image
+
 docker build -t my-devops-app:latest .
 
 # Start container
+
 docker run -d -p 3000:3000 --name my-devops-container my-devops-app:latest
 
 # Check container status
+
 docker ps
 
 # Check container log for more details
+
 docker logs my-devops-container
 
 ```
@@ -430,24 +446,44 @@ docker logs my-devops-container
 Docker-compose is use Docker Compose to manage multiple services together with a single command.
 ```
   # Start all services defined in docker-compose.yml
+
   docker-compose up -d
+
   # View real-time logs from all services
+
   docker-compose logs -f
+
   # Stop all services and clean up
+
   docker-compose down
 
 ```
 
-### Step 9: Deploy to GitHub
+### Step 9: Deploy Pipeline to GitHub
 
 bash
 
 ```
+#Add all files to the Git staging area
+
 git add .
+
+# Create a snapshot of the staging area before pushing with a descriptive
+
 git commit -m "Initial commit: Complete DevOps setup with working CI/CD"
+
+# Set main as the default branch
+
 git branch -M main
+
+# Connect to your GitHub repository (replace yourusername with your actual GitHub username)
+
 git remote add origin https://github.com/YOUR_GITHUB_USERNAME/my-devops-project.git
+
+# Push your code to GitHub for the first time
+
 git push -u origin main
+
 ```
 
 ### Step 10: Kubernetes Deployment
@@ -456,11 +492,21 @@ Create directories:
 
 bash
 ```
+# Create staging and production folder in the k8s direcctory.
+
 mkdir -p k8s/staging k8s/production
+
+
 ```
 
+```
 Add staging and production deployments (deployment.yml in each).
-(Use the full YAML from your content.)
+
+touch deployment.yml
+
+```
+Copy and paste the content of each yaml file accordingly on [staging](https://github.com/ibrahimbio/SkillSchuleDevOps2/blob/main/k8s/staging/deployment.yml) and [production](https://github.com/ibrahimbio/SkillSchuleDevOps2/blob/main/k8s/production/deployment.yml) deployment.yml file.
+
 
 ### Step 11: Complete Deployment Workflow
 
@@ -471,19 +517,38 @@ Deploy to staging:
 
 bash
 ```
+#Creates a new branch and checks into it
+
 git checkout -b develop
+
+# Add all files to Git staging area
 git add .
+
+#Takes snapshot of file before pushing to develop branch
 git commit -m "Add new feature"
-git push origin develo
+
+# Push commited stage to develop branch
+git push origin develop
+
+
 ```
 Deploy to production:
 
 bash
 
 ```
+# Switch to main branch
+
 git checkout main
+
+# Merge the changes made from the develop branch to main
+
 git merge develop
+
+# Push merged changes to main branch
+
 git push origin main
+
 ```
 
 ### Troubleshooting Guide
