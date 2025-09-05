@@ -115,3 +115,25 @@ json
   }
 }
 ```
+
+Create app.js
+
+```
+// core modules
+const http = require("http");
+const url = require("url");
+
+const PORT = process.env.PORT || 3000;
+const ENVIRONMENT = process.env.NODE_ENV || "development";
+let requestCount = 0;
+
+// helpers for responses...
+// [full code from your content]
+```
+
+### Install Dependencies
+
+```bash
+npm install --save-dev jest eslint supertest
+npm install
+```
