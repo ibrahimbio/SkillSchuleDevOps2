@@ -166,3 +166,138 @@ describe('App Endpoints', () => {
   // other tests...
 });
 ```
+
+## Add Jest config (jest.config.js)
+
+js
+```
+module.exports = {
+  testEnvironment: 'node',
+  collectCoverage: true,
+  coverageDirectory: 'coverage',
+  testMatch: ['**/tests/**/*.test.js'],
+  verbose: true
+};
+```
+
+## Step 4: GitHub Actions CI/CD Pipeline
+⏱️ Time Required: 15 minutes
+
+Create workflow:
+```
+mkdir -p .github/workflows
+```
+
+Add .github/workflows/ci.yml:
+
+yaml
+```
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main ]
+
+# [full YAML code from your content]
+```
+
+## Step 5: Dockerfile
+⏱️ Time Required: 5 minutes
+
+Create Dockerfile:
+
+dockerfile
+```
+FROM node:20-alpine AS dependencies
+RUN apk update && apk upgrade --no-cache
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production && npm cache clean --force
+
+FROM node:20-alpine AS production
+RUN apk update && apk upgrade --no-cache && \
+    apk add --no-cache curl dumb-init && \
+    rm -rf /var/cache/apk/*
+RUN addgroup -g 1001 -S nodejs && adduser -S nodeuser -u 1001 -G nodejs
+WORKDIR /app
+COPY --from=dependencies --chown=nodeuser:nodejs /app/node_modules ./node_modules
+COPY --chown=nodeuser:nodejs package*.json ./
+COPY --chown=nodeuser:nodejs app.js ./
+USER nodeuser
+EXPOSE 3000
+HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=3 \
+  CMD curl -f http://localhost:3000/health || exit 1
+ENTRYPOINT ["dumb-init", "--"]
+CMD ["npm", "start"]
+```
+
+## Step 6: Essential Config Files
+⏱️ Time Required: 5 minutes
+
+- .dockerignore
+- .gitignore
+- .env.example
+- .eslintrc.js
+(Use the configs provided in your content.)
+
+
+## Step 7: Docker Compose
+
+Create docker-compose.yml:
+
+yaml
+
+```
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+```
+
+Step 8: Test Everything Locally
+
+bash
+
+```
+npm install
+npm test
+npm start
+```
+
+Test endpoints:
+
+bash
+
+```
+curl http://localhost:3000/
+curl http://localhost:3000/health
+curl http://localhost:3000/info
+curl http://localhost:3000/metrics
+```
+
+Docker commands:
+bash
+```
+docker build -t my-devops-app:latest .
+docker run -d -p 3000:3000 --name my-devops-container my-devops-app:latest
+docker ps
+docker logs my-devops-container
+```
+
+
+
