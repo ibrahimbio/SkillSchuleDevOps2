@@ -131,9 +131,37 @@ let requestCount = 0;
 // [full code from your content]
 ```
 
-### Install Dependencies
+## Install Dependencies
 
 ```bash
 npm install --save-dev jest eslint supertest
 npm install
+```
+
+## Step 3: Create Proper Tests
+⏱️ Time Required: 10 minutes
+
+Create tests
+
+```bash
+mkdir tests
+touch tests/app.test.js
+```
+Add tests/app.test.js:
+```
+js
+const request = require('supertest');
+const server = require('../app');
+
+describe('App Endpoints', () => {
+  afterAll(() => server.close());
+
+  test('GET / should return welcome page', async () => {
+    const response = await request(server).get('/');
+    expect(response.status).toBe(200);
+    expect(response.text).toContain('DevOps Lab 2025');
+  });
+
+  // other tests...
+});
 ```
