@@ -347,3 +347,13 @@ git merge develop
 git push origin main
 ```
 
+### Troubleshooting Guide
+
+## Common Issues
+
+- npm test fails with module not found → Run npm install
+- Docker build fails - permission denied → Ensure Docker Desktop is running
+- GitHub Actions failing on push → Update YOUR_GITHUB_USERNAME
+- Port 3000 already in use → Kill process or change port in .env
+- eslint command not found → Run npm install --save-dev or npx eslint .
+- Tests timing out → Ensure module.exports = server; in app.js
