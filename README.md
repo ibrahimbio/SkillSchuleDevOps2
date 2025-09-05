@@ -138,78 +138,59 @@ Create Application file
 tocuh app.js
 
 ```
-Copy and past the content of [app.js](https://github.com/ibrahimbio/SkillSchuleDevOps2/blob/main/app.js)
-```
-// core modules
-const http = require("http");
-const url = require("url");
+Copy and past the content of [app.js](https://github.com/ibrahimbio/SkillSchuleDevOps2/blob/main/app.js) into the file created
 
-const PORT = process.env.PORT || 3000;
-const ENVIRONMENT = process.env.NODE_ENV || "development";
-let requestCount = 0;
-
-// helpers for responses...
-// [full code from your content]
-```
 
 ## Install Dependencies
 
-```bash
+bash
+```
 npm install --save-dev jest eslint supertest
 npm install
 ```
 
-## Step 3: Create Proper Tests
+## Step 3: Create Test Setup
 
 
-Create tests
+Create test folder and file
 
-```bash
+bash
+```
+# Create a folder called tests
 mkdir tests
+
+# Create a app.test.js file
 touch tests/app.test.js
 ```
-Add tests/app.test.js:
 
-js
+Add the content [here](https://github.com/ibrahimbio/SkillSchuleDevOps2/blob/main/tests/app.test.js) to the app.test.js:
+
+
+## Create a Jest Configuration 
 ```
-const request = require('supertest');
-const server = require('../app');
+# Creates a jest.config.js file
 
-describe('App Endpoints', () => {
-  afterAll(() => server.close());
-
-  test('GET / should return welcome page', async () => {
-    const response = await request(server).get('/');
-    expect(response.status).toBe(200);
-    expect(response.text).toContain('DevOps Lab 2025');
-  });
-
-  // other tests...
-});
+touch jest.config.js
 ```
+Add the [Jest config](https://github.com/ibrahimbio/SkillSchuleDevOps2/blob/main/jest.config.js) content to jest.config.js
 
-## Add Jest config (jest.config.js)
-
-js
-```
-module.exports = {
-  testEnvironment: 'node',
-  collectCoverage: true,
-  coverageDirectory: 'coverage',
-  testMatch: ['**/tests/**/*.test.js'],
-  verbose: true
-};
-```
 
 ## Step 4: GitHub Actions CI/CD Pipeline
 
-
 Create workflow:
+
 ```
+Creates  workflow in a .github folder
+
 mkdir -p .github/workflows
+
+Create a ci.yml file in the workflow folder
+
+touch .github/workflows/ci.yml
+
 ```
 
-Add .github/workflows/ci.yml:
+Copy and paste the content of [CI pipeline](https://github.com/ibrahimbio/SkillSchuleDevOps2/blob/main/.github/workflows/ci.yml) to the created file:
 
 yaml
 ```
@@ -229,7 +210,12 @@ on:
 
 Create Dockerfile:
 
-dockerfile
+```
+#Creates a Dockerfile
+touch Dockerfile
+
+```
+Copy and paste the content of Dockerfile below into the creted file.  
 ```
 FROM node:20-alpine AS dependencies
 RUN apk update && apk upgrade --no-cache
@@ -256,9 +242,8 @@ CMD ["npm", "start"]
 
 ## Step 6: Essential Config Files
 
-
 - .dockerignore (use ``` touch .dockerignore ``` to create file).
-Copy and paste content below in created file
+ The file tells docker the files to ignore when building a container image.Copy and paste content below in created file:
 
 .dockerignore
 
@@ -286,7 +271,7 @@ jest.config.js
 .eslintrc*
 ```
 - .gitignore (use ``` touch .gitignore ``` to create file).
-Copy and paste content below in created file:
+ The file tells git the files to ignore and not track.Copy and paste content below in created file:
 
 .gitignore
 
@@ -325,7 +310,7 @@ Thumbs.db
 
 ```
 - .env.example (use ``` touch env.example ``` to create file).
-Copy and paste content below in created file:
+The file shows other developers what environment variables an application requires, without exposing secrets. Copy and paste content below in created file: 
 
 ```
 # Server Configuration
@@ -336,7 +321,10 @@ NODE_ENV=production
 LOG_LEVEL=info
 
 ```
+
 - .eslintrc.js  (use ``` touch .eslintrc.js ``` to create file).
+The file configures ESLint to check your JavaScript code for errors and maintain consistent coding style.
+
 Copy and paste content below in created file:
 
 ```
@@ -362,10 +350,16 @@ module.exports = {
 (Use the configs provided in your content.)
 
 
-## Step 7: Docker Compose
+## Step 7: Development using Docker Compose
+A Docker Compose file makes it easy to run your application and any supporting services, such as databases with a single command.
 
-Create docker-compose.yml:
+```
+# Create docker-compose.yml
 
+touch docker-compose.yml
+
+```
+Copy and paste the following codes in the file:
 yaml
 
 ```
@@ -392,9 +386,16 @@ services:
 bash
 
 ```
+# Install all dependencies in the package.json file  
 npm install
+
+# Run test
+
 npm test
+
+# Start app
 npm start
+
 ```
 
 Test endpoints:
@@ -402,6 +403,7 @@ Test endpoints:
 bash
 
 ```
+#Copy and paste to a browser address bar of your choice
 curl http://localhost:3000/
 curl http://localhost:3000/health
 curl http://localhost:3000/info
@@ -411,10 +413,29 @@ curl http://localhost:3000/metrics
 Docker commands:
 bash
 ```
+#  Builder Docker image
 docker build -t my-devops-app:latest .
+
+# Start container
 docker run -d -p 3000:3000 --name my-devops-container my-devops-app:latest
+
+# Check container status
 docker ps
+
+# Check container log for more details
 docker logs my-devops-container
+
+```
+## Docker-Compose Run
+Docker-compose is use Docker Compose to manage multiple services together with a single command.
+```
+  # Start all services defined in docker-compose.yml
+  docker-compose up -d
+  # View real-time logs from all services
+  docker-compose logs -f
+  # Stop all services and clean up
+  docker-compose down
+
 ```
 
 ### Step 9: Deploy to GitHub
